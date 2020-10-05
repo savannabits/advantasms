@@ -91,18 +91,29 @@ class Advantasms
         if (!$response) {
             $return["success"] = false;
             $return["message"] = "No response from the server.";
+            return $return;
         } else {
-            if (isset($response['response-code']) && $response["response-code"] === 200) {
-                $return["success"] = true;
-                $return["message"] = "Message sent successfully";
-                $return["payload"] = $response;
-            } else {
-                $return["success"] = false;
-                $return["message"] = $response["response-description"];
-                $return["payload"] = $response;
+            if (isset($response['responses'])) {
+                $first = $response["responses"][0];
+                $return["success"] = $first["response-code"] ===200;
+                $return["code"] = $first["response-code"];
+                $return["message"] = $first["response-description"];
+                $return["payload"] = $response["responses"];
+                return $return;
             }
+            if (isset($response["response-code"])) {
+                $first = $response;
+                $return["success"] = $first["response-code"] ===200;
+                $return["code"] = $first["response-code"];
+                $return["message"] = $first["response-description"];
+                $return["payload"] = $response;
+                return $return;
+            }
+            $return["success"] = false;
+            $return["message"] = "Unknown Error";
+            $return["payload"] = $response;
+            return $response;
         }
-        return $return;
     }
 
     /**

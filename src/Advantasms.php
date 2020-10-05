@@ -152,7 +152,7 @@ class Advantasms
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($curl, CURLOPT_HEADER, false);
         $curl_response = curl_exec($curl);
-        return json_decode($curl_response);
+        return json_decode($curl_response,true);
     }
 
 }

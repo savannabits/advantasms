@@ -1,0 +1,47 @@
+{
+    "name": "savannabits/advantasms",
+    "description": "PHP SDK for AdvantaSMS Gateway",
+    "keywords": [
+        "savannabits",
+        "advantasms",
+        "advanta sms",
+        "php sdk",
+        "laravel advanta sms"
+    ],
+    "homepage": "https://github.com/savannabits/advantasms",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Sam Maosa",
+            "email": "maosa.sam@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0|^8.0|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Savannabits\\Advantasms\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Savannabits\\Advantasms\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

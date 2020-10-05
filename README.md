@@ -29,12 +29,13 @@ Ensure you have thhe following required credentials from AdvantaSMS:
  
 ### Sending SMS
 ```php
+use \Savannabits\Advantasms\Advantasms;
 $apiKey = "";
 $partnerId = "";
 $shortcode = "";
 $mobile = "254xxxxxxxxx";
 //instantiate
-$sms = new \Savannabits\Advantasms\Advantasms($apiKey,$partnerId,$shortcode);
+$sms = new Advantasms($apiKey,$partnerId,$shortcode);
 
 //Send and receive response
 $response = $sms->to($mobile)->message("Your message right here...")->send();
@@ -46,17 +47,18 @@ $response = $sms->to($mobile)->message("Your message right here")->schedule($tim
 
 If you don't like instantiating class into variables, you can use the init static method instead:
 ```php
+use \Savannabits\Advantasms\Advantasms;
 $apiKey = "";
 $partnerId = "";
 $shortcode = "";
 $mobile = "254xxxxxxxxx";
 
 //Send and receive response
-$response = \Savannabits\Advantasms\Advantasms::init($apiKey,$partnerId,$shortcode)->to($mobile)->message("Your message right here...")->send();
+$response = Advantasms::init($apiKey,$partnerId,$shortcode)->to($mobile)->message("Your message right here...")->send();
 
 //Schedule sms to be sent at a specific time
 $time = "2020-10-01 18:00"; // Y-m-d H:i
-$response = \Savannabits\Advantasms\Advantasms::init($apiKey,$partnerId,$shortcode)->to($mobile)->message("Your message right here...")->schedule($time);
+$response = Advantasms::init($apiKey,$partnerId,$shortcode)->to($mobile)->message("Your message right here...")->schedule($time);
 ```
 ### Testing
 
@@ -84,7 +86,3 @@ If you discover any security related issues, please email maosa.sam@gmail.com in
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## PHP Package Boilerplate
-
-This package was generated using the [PHP Package Boilerplate](https://laravelpackageboilerplate.com).

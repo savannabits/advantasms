@@ -24,7 +24,6 @@ composer require savannabits/advantasms
 Ensure you have thhe following required credentials from AdvantaSMS:
  - apiKey
  - Partner ID (e.g 2030)
- - Sender ID (e.g 2022)
  - Shortcode (e.g SAVBITS)
  
 ### Sending SMS
@@ -60,6 +59,43 @@ $response = Advantasms::init($apiKey,$partnerId,$shortcode)->to($mobile)->messag
 $time = "2020-10-01 18:00"; // Y-m-d H:i
 $response = Advantasms::init($apiKey,$partnerId,$shortcode)->to($mobile)->message("Your message right here...")->schedule($time);
 ```
+
+### Sample responses
+
+#### Error
+```json
+{
+  "success":false,
+  "message":"Low credit units to send message, Current balance 0.00, Required 1",
+  "payload":[
+        {
+          "response-code":1004,
+          "response-description":"Low credit units to send message, Current balance 0.00, Required 1",
+          "mobile":"0708467001"
+        }
+     ],
+  "code":1004
+}
+```
+#### Success
+```json
+{
+  "success":true,
+  "message":"Success",
+  "payload":[
+        {
+            "respose-code": 200,
+            "response-description": "Success",
+            "mobile": 254712345678,
+            "messageid": 8290842,
+            "networkid": "1"
+        }
+    ],
+  "code":200
+}
+```
+
+
 ### Testing
 
 ``` bash

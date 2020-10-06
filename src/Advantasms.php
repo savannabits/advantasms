@@ -59,7 +59,23 @@ class Advantasms
     /**
      * Execute sms sending action
      * @return array|mixed
-     */
+     *
+     * 200;Successful Request Call
+     * 1001;Invalid sender id
+     * 1002;Network not allowed
+     * 1003;Invalid mobile number
+     * 1004;Low bulk credits
+     * 1005;Failed. System error
+     * 1006;Invalid credentials
+     * 1007;Failed. System error
+     * 1008;No Delivery Report
+     * 1009;unsupported data type
+     * 1010;unsupported request type
+     * 4090;Internal Error. Try again after 5 minutes
+     * 4091;No Partner ID is Set
+     * 4092;No API KEY Provided
+     * 4093;Details Not Found
+     * */
     public function send() {
         $data = [
             "apikey"=>$this->apikey,
@@ -69,23 +85,6 @@ class Advantasms
             "mobile"=>trim($this->to)
         ];
         $response = $this->curlPost($this->sendsms,$data);
-        /*
-            200;Successful Request Call
-            1001;Invalid sender id
-            1002;Network not allowed
-            1003;Invalid mobile number
-            1004;Low bulk credits
-            1005;Failed. System error
-            1006;Invalid credentials
-            1007;Failed. System error
-            1008;No Delivery Report
-            1009;unsupported data type
-            1010;unsupported request type
-            4090;Internal Error. Try again after 5 minutes
-            4091;No Partner ID is Set
-            4092;No API KEY Provided
-            4093;Details Not Found
-         */
         $return = [
             "success" => false,
             "message" => "",

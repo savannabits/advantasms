@@ -7,11 +7,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1iSU88ixLPpFfkQrZWiSjoc3Yqg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -19,7 +23,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../daraja/src/Daraja.php" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../strathmore/payments" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -32,6 +36,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601900325133</updated>
       <workItem from="1601900326383" duration="12122000" />
+      <workItem from="1601968473224" duration="44000" />
     </task>
     <servers />
   </component>
@@ -39,9 +44,9 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="748" y="280" key="FileChooserDialogImpl" timestamp="1601901770693">
+    <state x="748" y="280" width="424" height="483" key="FileChooserDialogImpl" timestamp="1601968514234">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="748" y="280" key="FileChooserDialogImpl/0.0.1920.1044@0.0.1920.1044" timestamp="1601901770693" />
+    <state x="748" y="280" width="424" height="483" key="FileChooserDialogImpl/0.0.1920.1044@0.0.1920.1044" timestamp="1601968514234" />
   </component>
 </project>

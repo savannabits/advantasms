@@ -6,20 +6,22 @@ class Advantasms
 {
     private $apikey, $partnerId, $shortcode;
     private $message, $to;
-    private $baseUrl = "https://quicksms.advantasms.com/api/services";
-    private $sendsms = "/sendsms";
+    private $baseUrl = "https://quicksms.advantasms.com";
+    private $sendsms = "/api/services/sendsms";
     /**
      * Advantasms constructor.
      * @param string $apiKey |The advanta sms API Key. See documentation for more details
      * @param string $partnerId | The Partner ID. See advantaSMS documentation for more details
      * @param string $shortCode | The Shortcode of used to send sms. See documentation for more details
+     * @param string|null $domain | The base domain in case it is different from https://quicksms.advantasms.com
      * @return Advantasms
      */
-    public function __construct($apiKey, $partnerId, $shortCode)
+    public function __construct($apiKey, $partnerId, $shortCode, $baseUrl="https://quicksms.advantasms.com")
     {
         $this->apikey = $apiKey;
         $this->partnerId = $partnerId;
         $this->shortcode = $shortCode;
+        $this->baseUrl  = $baseUrl;
         return $this;
     }
 
@@ -28,10 +30,11 @@ class Advantasms
      * @param string $apiKey |The advanta sms API Key. See documentation for more details
      * @param string $partnerId | The Partner ID. See advantaSMS documentation for more details
      * @param string $shortCode | The Shortcode of used to send sms. See documentation for more details
+     * @param string|null $domain | The base domain in case it is different from quicksms.advantasms.com
      * @return Advantasms
      */
-    public static function init($apiKey,$partnerId, $shortCode) {
-        $instance = new self($apiKey,$partnerId,$shortCode);
+    public static function init($apiKey,$partnerId, $shortCode, $baseUrl="https://quicksms.advantasms.com") {
+        $instance = new self($apiKey,$partnerId,$shortCode,$baseUrl);
         return $instance;
     }
 

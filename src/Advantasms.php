@@ -7,7 +7,7 @@ class Advantasms
     private $apikey, $partnerId, $shortcode;
     private $message, $to;
     private $baseUrl = "https://quicksms.advantasms.com";
-    private $sendsms = "/api/services/sendsms";
+    private $sendsms = "/api/services/sendsms/";
     /**
      * Advantasms constructor.
      * @param string $apiKey |The advanta sms API Key. See documentation for more details

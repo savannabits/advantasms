@@ -82,7 +82,8 @@ class Advantasms
             "partnerID"=>trim($this->partnerId),
             "message"=>trim($this->message),
             "shortcode"=>$this->shortcode,
-            "mobile"=>trim($this->to)
+            "mobile"=>trim($this->to),
+            'pass_type' => 'plain',
         ];
         $response = $this->curlPost($this->sendsms,$data);
         $return = [
@@ -111,19 +112,45 @@ class Advantasms
                 $return["payload"] = $response;
                 return $return;
             }
+            //Temporal fix for the mis-spelled api response code to 'respose-code'
+            if (isset($response["respose-code"])) {
+                $first = $response;
+                $return["success"] = $first["respose-code"] ===200;
+                $return["code"] = $first["respose-code"];
+                $return["message"] = $first["response-description"];
+                $return["payload"] = $response;
+                return $return;
+            }
+
             $return["success"] = false;
             $return["message"] = "Unknown Error";
             $return["payload"] = $response;
-            return $response;
+            return $return;
         }
     }
 
     /**
-     * Execute sms sending action
-     * @param string $time | Time when the sms will be sent in the format Y-m-d H:i
+     * Schedule sms sending action
+     * @param string $time | Time to send in Y-m-d H:i format
      * @return array|mixed
-     */
-    public function schedule(string $time) {
+     *
+     * 200;Successful Request Call
+     * 1001;Invalid sender id
+     * 1002;Network not allowed
+     * 1003;Invalid mobile number
+     * 1004;Low bulk credits
+     * 1005;Failed. System error
+     * 1006;Invalid credentials
+     * 1007;Failed. System error
+     * 1008;No Delivery Report
+     * 1009;unsupported data type
+     * 1010;unsupported request type
+     * 4090;Internal Error. Try again after 5 minutes
+     * 4091;No Partner ID is Set
+     * 4092;No API KEY Provided
+     * 4093;Details Not Found
+     * */
+    public function schedule($time) {
         $data = [
             "apikey"=>$this->apikey,
             "partnerID"=>trim($this->partnerId),
@@ -131,11 +158,51 @@ class Advantasms
             "shortcode"=>$this->shortcode,
             "mobile"=>trim($this->to),
             "timeToSend" => trim($time),
+            'pass_type' => 'plain',
         ];
         $response = $this->curlPost($this->sendsms,$data);
-        return $response;
-    }
+        $return = [
+            "success" => false,
+            "message" => "",
+            "payload" => []
+        ];
+        if (!$response) {
+            $return["success"] = false;
+            $return["message"] = "No response from the server.";
+            return $return;
+        } else {
+            if (isset($response['responses'])) {
+                $first = $response["responses"][0];
+                $return["success"] = $first["response-code"] ===200;
+                $return["code"] = $first["response-code"];
+                $return["message"] = $first["response-description"];
+                $return["payload"] = $response["responses"];
+                return $return;
+            }
+            if (isset($response["response-code"])) {
+                $first = $response;
+                $return["success"] = $first["response-code"] ===200;
+                $return["code"] = $first["response-code"];
+                $return["message"] = $first["response-description"];
+                $return["payload"] = $response;
+                return $return;
+            }
+            //Temporal fix for the mis-spelled api response code to 'respose-code'
+            if (isset($response["respose-code"])) {
+                $first = $response;
+                $return["success"] = $first["respose-code"] ===200;
+                $return["code"] = $first["respose-code"];
+                $return["message"] = $first["response-description"];
+                $return["payload"] = $response;
+                return $return;
+            }
 
+            $return["success"] = false;
+            $return["message"] = "Unknown Error";
+            $return["payload"] = $response;
+            return $return;
+        }
+    }
     /**
      * @param string $endpoint
      * @param array $data
